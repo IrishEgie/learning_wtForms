@@ -1,9 +1,8 @@
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, InputRequired, EqualTo, Regexp
 import os
-
 
 '''
 Red underlines? Install the required packages first: 
@@ -18,10 +17,12 @@ pip3 install -r requirements.txt
 This will install the packages from requirements.txt for this project.
 '''
 
+# A common regex for validating email addresses
+email_regex = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
 
 class LoginForm(FlaskForm):
-    email = StringField(label='Email', validators=[DataRequired()])
-    password = PasswordField(label='Password', validators=[DataRequired()])
+    email = StringField(label='Email', validators=[DataRequired(),Regexp(regex=email_regex, flags=0, message=None) ])
+    password = PasswordField('New Password', [InputRequired()])
     submit = SubmitField('Log in')
 
 app = Flask(__name__)
