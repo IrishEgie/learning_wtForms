@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, InputRequired, EqualTo, Regexp
+from flask_bootstrap import Bootstrap5
 import os
 
 '''
@@ -27,6 +28,8 @@ class LoginForm(FlaskForm):
 
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY') 
+
+bootstrap = Bootstrap5(app)
 
 @app.route("/")
 def home():
