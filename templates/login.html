@@ -9,12 +9,11 @@
 		<h1>Login</h1>
         <!-- This is where our form will go. -->
 			<form action="{{url_for('login')}}">
-
 				{{form.csrf_token}}
-				{{form.email.label}}
-				{{form.name.label}}
 
-
+				<p>{{form.email.label}} <br> {{ form.email(size=30) }}</p> 
+				<p> {{form.password.label}}<br> {{ form.password(size=30) }}</p>
+				{{form.submit}}
 			</form>
 
         </div>

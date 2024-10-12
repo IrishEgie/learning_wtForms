@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from flask_wtf import FlaskForm
-from wtforms import StringField
+from wtforms import StringField, PasswordField, SubmitField
 import os
 
 
@@ -19,11 +19,12 @@ This will install the packages from requirements.txt for this project.
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Email')
-    password = StringField('Password')
+    email = StringField(label='Email')
+    password = PasswordField(label='Password')
+    submit = SubmitField('Log in')
 
 app = Flask(__name__)
-app.secret_key = os.get_env('SECRET_KEY') 
+app.secret_key = os.getenv('SECRET_KEY') 
 
 @app.route("/")
 def home():
